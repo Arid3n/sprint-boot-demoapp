@@ -9,19 +9,21 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@Controller
 public class NumberControllerForm {
 
+    @Autowired
     private NumberService numberService;
 
     @GetMapping("/numberform")
-    public String numberForm(NumberData numberData) { return "numberFormRegistro"; }
+    public String numberForm(NumberData numberData) { return "formNumber"; }
 
     @PostMapping("/numberform")
     public String checkNumber(@ModelAttribute @Valid NumberData numberData, BindingResult bindingResult, Model model)
     {
         if (bindingResult.hasErrors())
         {
-            return "numberFormRegistro";
+            return "formNumber";
         }
         model.addAttribute("evenResponse", numberService.evenResponse(numberData.getNumber()));
         return "evenCheck";
