@@ -37,4 +37,13 @@ public class MockMvcTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Hola Domingo")));
     }
+
+    @Test
+    public void postShouldReturnEven() throws Exception
+    {
+        this.mockMvc.perform(post("/numberform")
+                .param("number", "50"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("The number is even")));
+    }
 }
